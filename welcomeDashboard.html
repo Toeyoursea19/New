@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chase/balance/dashboard/william.scott</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body.active {
+            opacity: 1;
+        }
+        nav{
+            /* border: 1px solid rgb(89, 91, 245); */
+            width: 100%;
+            height: 150px;
+            text-align: center;
+            background-color: rgb(89, 91, 245);
+            /* padding: 40px; */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .fav{
+            /* border: 1px solid green; */
+            padding: 1rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+        .fa-solid fa-bars{
+            font-size: 3rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        img{
+            width: 50px;
+            height: 50px;
+        }
+
+        .navOption{
+            /* border: 1px solid red; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0rem 1rem;
+        }
+        .content{
+            display: flex;
+            gap: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: #fff;
+            font-weight: 700;
+        }
+        .dashboard {
+            border: 1px solid grey;
+            width: 100%;
+            height: 90vh;
+            /* text-align: center; */
+            background-color: white;
+            /* padding: 20px; */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .bank{
+            display: flex;
+            border: 1px solid rgb(206, 203, 203);
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgb(206, 203, 203);
+            padding: 0rem 1rem;
+
+        }
+        h1{
+            font-size: 1rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: rgb(73, 72, 72);
+            font-weight: 700;
+        }
+        select{
+            font-size: .7rem;
+            outline: none;
+            width: 1rem;
+        }
+        .fa-solid fa-info{
+            font-size: 1rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .premier{
+            border: 2px solid rgb(97, 96, 96);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgb(206, 203, 203);
+            padding: 0rem 1rem;
+            border-bottom: none;
+            border-left: none;
+            border-right: none;
+        }
+        h2{
+            font-size: 1rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: rgb(51, 51, 216);
+        }
+        .btn-premier{
+            border: 1px solid blue;
+            font-size: 1rem;
+            padding: .8rem .8rem;
+            background-color: blue;
+            color: #fff;
+        }
+
+        .items{
+            border: 1px solid rgb(177, 176, 176);
+            font-size: .7rem;
+            padding: 0rem 1rem;
+            background-color: rgb(160, 159, 159);
+        }
+        .availableBalance{
+            border: 1px solid rgb(177, 176, 176);
+            background-color: rgb(206, 203, 203);
+        }
+        .wrapper1{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0rem 1rem;
+        }
+        h4{
+            font-size: 2rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        p{
+            font-size: .9rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: 700;
+        }
+        .wrapper2{
+            /* border: 1px solid green; */
+            font-size: 1rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-top: -80px;
+            padding: 0rem 1rem;
+            display:  flex;
+            justify-content: space-between;
+        }
+
+        .chaseSavings{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0rem 1rem;
+            background-color: rgb(206, 203, 203);
+            border-top: rgb(83, 82, 82);
+            border: 2px solid rgb(83, 82, 82);
+        }
+        #savings-h1{
+            font-size: 1rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: blue;
+        }
+
+        .logout-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="fav">
+            <i class="fa-solid fa-bars"></i>
+
+            <img src="./images/UseLogo-Photoroom.png" alt="L">
+            <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+        
+        <div class="navOption">
+            <div class="content">
+                <p>Accounts</p>
+                <p>Pay & transfer</p>
+                <p>Investment</p>
+                <p>Security & privacy</p>
+            </div>
+            
+        </div>
+    </nav>
+    <div class="dashboard">
+        <div class="bank">
+            <h1> <select>
+                <option value="Savings">Savings</option>
+            </select>Bank</h1>
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+
+        <div class="premier">
+            <h2>PREMIER PLUS CKG (...2468)</h2>
+            <span>
+                <button class="btn-premier">Transfer money</button>
+            </span>
+        </div>
+
+        <div class="items">
+            <h3>You have <span> <a href="#">1 items</a> on hold</span></h3>
+        </div>
+
+        <div class="availableBalance">
+            <div class="wrapper1">
+                <h4>$3,211.02</h4>
+                <p>+0.00</p>
+                <p>-0.00</p>
+            </div>
+            <div class="wrapper2">
+                <h6>Available Balance</h6>
+                <h6>Deposit this month</h6>
+                <h6>Withdrawal this month</h6>
+            </div>
+        </div>
+
+        <div class="chaseSavings">
+            <h1 id="savings-h1">CHASE SAVINGS (...2468) </h1>
+            <span>
+                <button class="btn-premier">Transfer money</button>
+            </span>
+        </div>
+
+        <div class="items">
+            <h3>You have <span> <a href="#">1 items</a> </span></h3>
+        </div>
+
+        <div class="availableBalance">
+            <div class="wrapper1">
+                <h4>$6,320.00</h4>
+                <p>+0.00</p>
+                <p>-0.00</p>
+            </div>
+            <div class="wrapper2">
+                <h6>Available Balance</h6>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fade-in animation
+        document.body.classList.add('active');
+
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // Fade-out effect before logout
+            document.body.style.opacity = 0;
+            setTimeout(() => {
+                window.location.href = 'ChaseLogin.html';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
